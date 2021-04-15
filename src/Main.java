@@ -12,7 +12,6 @@ public class Main {
         //This is for testing
         final var socialMediaPlatform = new SocialMediaPlatformImpl();
 
-
         //Create a new account
         try {
             socialMediaPlatform.createAccount("Banan", "I am banana");
