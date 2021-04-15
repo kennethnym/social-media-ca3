@@ -28,16 +28,13 @@ public class SocialMediaPlatformImpl implements SocialMediaPlatform{
 
     @Override
     public void changeAccountHandle(String oldHandle, String newHandle) throws HandleNotRecognisedException, IllegalHandleException, InvalidHandleException {
-        String oldH = oldHandle;
-        String newH = newHandle;
 
+        //Loops through and checks the handles, if true then set handle with new handle
         for (int i = 0; i < accounts.size(); i++) {
             if (accounts.get(i).getHandle().equals(oldHandle)){
-
+                accounts.get(i).setHandle(newHandle);
             }
         }
-
-
     }
 
     @Override
