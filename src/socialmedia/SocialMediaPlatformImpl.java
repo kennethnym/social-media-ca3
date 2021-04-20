@@ -19,12 +19,6 @@ public class SocialMediaPlatformImpl implements SocialMediaPlatform {
         return accountID;
     }
 
-    //DELETE THIS JUST FOR TESTING
-    public int showArraylists(){
-        int total = this.accounts.size();
-        return total;
-    }
-
     @Override
     public void removeAccount(int id) throws AccountIDNotRecognisedException {
         //Loops through and checks if there is the same id

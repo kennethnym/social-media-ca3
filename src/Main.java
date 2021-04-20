@@ -15,20 +15,23 @@ public class Main {
 
         //Create a new account
         try {
-            socialMediaPlatform.createAccount("ban", "I am banana");
-            System.out.println(socialMediaPlatform.showArraylists());
 
-            socialMediaPlatform.createAccount("tooty", "I am tooty");
-            System.out.println(socialMediaPlatform.showArraylists());
+            //Create account Handle: Jam, Description: I am jam
+            socialMediaPlatform.createAccount("chrisydaboy", "I am christopher");
+            socialMediaPlatform.updateAccountDescription("chrisydaboy", "updated description");
 
             socialMediaPlatform.createAccount("jam", "I am jam");
-            System.out.println(socialMediaPlatform.showArraylists());
+            socialMediaPlatform.updateAccountDescription("chrisydaboy", "this is a new new description");
+            String showAccount1 = socialMediaPlatform.showAccount("chrisydaboy");
+            String showAccount = socialMediaPlatform.showAccount("jam");
 
-            System.out.print("total: ");
-            System.out.println(socialMediaPlatform.showArraylists());
+            System.out.println(showAccount1);
+            System.out.println(showAccount);
 
 
-            System.out.println(socialMediaPlatform.showAccount("jam"));
+            socialMediaPlatform.changeAccountHandle("chrisydaboy", "chrisyladspogchamp");
+            String showAccount1Updated = socialMediaPlatform.showAccount("chrisyladspogchamp");
+            System.out.println(showAccount1Updated);
 
 
         } catch (InvalidHandleException e) {
