@@ -15,7 +15,7 @@ public class SocialMediaPlatformImpl implements SocialMediaPlatform {
     public int createAccount(String handle) throws IllegalHandleException, InvalidHandleException {
         int arrayLength = this.accounts.size();
         int accountID = arrayLength + 1;
-        this.accounts.add(new Account(accountID, handle, ""));
+        this.accounts.add(new Account(accountID, handle, "empty"));
         return accountID;
     }
 
@@ -50,17 +50,17 @@ public class SocialMediaPlatformImpl implements SocialMediaPlatform {
 
         String formattedSummary = "default mate";
 
-        String currentAccountsHandle;
-
 //        accounts.get(i).getHandle().equals(handle)
 
         for (int i = 0; i < accounts.size(); i++) {
-            currentAccountsHandle = accounts.get(i).getHandle();
+            String currentAccountsHandle = accounts.get(i).getHandle();
             if (currentAccountsHandle.equals(handle)) {
 
                 //Grab all of the account data:
                 int accountID = accounts.get(i).getId();
                 String accountHandle = accounts.get(i).getHandle();
+
+                //Problem Code is this line below:
                 String accountDescription = accounts.get(i).getDescription();
 
                 //Need Kens Code:
@@ -156,7 +156,11 @@ public class SocialMediaPlatformImpl implements SocialMediaPlatform {
 
     @Override
     public void updateAccountDescription(String handle, String description) throws HandleNotRecognisedException {
-
+        for (int i = 0; i < accounts.size(); i++) {
+            if (accounts.get(i).getHandle().equals(handle)){
+                accounts.get(i).setDescription(description);
+            }
+        }
     }
 
     @Override

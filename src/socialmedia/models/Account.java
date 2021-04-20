@@ -12,6 +12,8 @@ public class Account {
         this.description = description;
     }
 
+    public void setDescription(String newDesc){ this.description = newDesc; }
+
     public void setHandle(String newHandle){
         this.handle = newHandle;
     }
@@ -25,7 +27,7 @@ public class Account {
     }
 
     public String getDescription(){
-        return handle;
+        return description;
     }
 
 }
