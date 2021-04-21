@@ -26,6 +26,23 @@ public class SocialMediaPlatformImpl implements SocialMediaPlatform, Serializabl
 
     @Override
     public int createAccount(String handle) throws IllegalHandleException, InvalidHandleException {
+        //IllegalHandleException
+        for (int j = 0; j < this.accounts.size(); j++) {
+            if (handle.equals(accounts.get(j).getHandle())){
+                throw new IllegalHandleException();
+            }
+        }
+
+        //InvalidHandleException
+        for (int i = 0; i < this.accounts.size(); i++) {
+            if (handle.contains(" ")){
+                throw new InvalidHandleException();
+            }
+            if (handle != null && !handle.isEmpty()){
+                throw new InvalidHandleException();
+            }
+        }
+        //Create account code:
         int arrayLength = this.accounts.size();
         int accountID = arrayLength + 1;
         this.accounts.add(new Account(accountID, handle, "empty"));
@@ -34,48 +51,128 @@ public class SocialMediaPlatformImpl implements SocialMediaPlatform, Serializabl
 
     @Override
     public int createAccount(String handle, String description) throws IllegalHandleException, InvalidHandleException {
+        //IllegalHandleException
+        for (int j = 0; j < this.accounts.size(); j++) {
+            if (handle.equals(accounts.get(j).getHandle())){
+                throw new IllegalHandleException();
+            }
+        }
+
+        //InvalidHandleException
+        for (int i = 0; i < this.accounts.size(); i++) {
+            if (handle.contains(" ")){
+                throw new InvalidHandleException();
+            }
+            if (handle != null && !handle.isEmpty()){
+                throw new InvalidHandleException();
+            }
+        }
+
+        //Create new account code
         int arrayLength = this.accounts.size();
         int accountID = arrayLength + 1;
         this.accounts.add(new Account(accountID, handle, description));
+
         return accountID;
     }
 
     @Override
     public void removeAccount(int id) throws AccountIDNotRecognisedException {
+        //AccountIDNotRecognisedException
+        for (int i = 0; i < accounts.size(); i++) {
+            if (!accounts.contains(accounts.get(i).getId())){
+                throw new AccountIDNotRecognisedException();
+            }
+
+        }
+
         // Loops through and checks if there is the same id
         for (int i = 0; i < this.accounts.size(); i++) {
             if (id == this.accounts.get(i).getId()) {
                 this.accounts.remove(i);
             }
         }
+
     }
 
     @Override
     public void removeAccount(String handle) throws HandleNotRecognisedException {
+        //HandleNotRecognisedException
+        for (int i = 0; i < accounts.size(); i++) {
+            if (!handle.equals(this.accounts.get(i).getHandle())){
+                throw new HandleNotRecognisedException();
+            }
+
+        }
+        //Loops through and removes account
         for (int i = 0; i < this.accounts.size(); i++) {
             if (handle.equals(this.accounts.get(i).getHandle())) {
                 accounts.remove(i);
             }
         }
+
+
+
     }
 
     @Override
     public void changeAccountHandle(String oldHandle, String newHandle) throws HandleNotRecognisedException, IllegalHandleException, InvalidHandleException {
+
+        //HandleNotRecognisedException
+        for (int i = 0; i < accounts.size(); i++) {
+            if (!oldHandle.equals(this.accounts.get(i).getHandle())){
+                throw new HandleNotRecognisedException();
+            }
+        }
+
+        //IllegalHandleException
+        for (int j = 0; j < this.accounts.size(); j++) {
+            if (oldHandle.equals(accounts.get(j).getHandle())){
+                throw new IllegalHandleException();
+            }
+        }
+
+        //InvalidHandleException
+        for (int i = 0; i < this.accounts.size(); i++) {
+            if (oldHandle.contains(" ")){
+                throw new InvalidHandleException();
+            }
+            if (oldHandle != null && !oldHandle.isEmpty()){
+                throw new InvalidHandleException();
+            }
+        }
+
         //Loops through and checks the handles, if true then set handle with new handle
         for (int i = 0; i < this.accounts.size(); i++) {
             if (this.accounts.get(i).getHandle().equals(oldHandle)) {
                 this.accounts.get(i).setHandle(newHandle);
             }
         }
+
+
+
+
+
     }
 
     @Override
     public void updateAccountDescription(String handle, String description) throws HandleNotRecognisedException {
+
+        //HandleNotRecognisedException
+        for (int i = 0; i < accounts.size(); i++) {
+            if (!handle.equals(this.accounts.get(i).getHandle())){
+                throw new HandleNotRecognisedException();
+            }
+        }
+
         for (int i = 0; i < accounts.size(); i++) {
             if (accounts.get(i).getHandle().equals(handle)) {
                 accounts.get(i).setDescription(description);
             }
         }
+
+
+
     }
 
     @Override
