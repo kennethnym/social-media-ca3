@@ -6,13 +6,22 @@ public class Account implements Serializable {
     private int id;
     private String handle;
     private String description;
-    private int endorsements;
+
+    /**
+     * The number of endorsements that this {@link Account} has received.
+     */
+    private int endorsementCount;
+
+    /**
+     * The number of posts that this {@link Account} has posted.
+     */
+    private int postCount;
 
     public Account(int id, String handle, String description) {
         this.id = id;
         this.handle = handle;
         this.description = description;
-        endorsements = 0;
+        endorsementCount = 0;
     }
 
     public void setDescription(String newDesc) {
@@ -35,7 +44,34 @@ public class Account implements Serializable {
         return description;
     }
 
+    public int getEndorsementCount() {
+        return endorsementCount;
+    }
+
+    /**
+     * Endorse this {@link Account}
+     */
     public void endorse() {
-        endorsements++;
+        endorsementCount++;
+    }
+
+    public void increasePostCount() {
+        postCount++;
+    }
+
+    public void decreasePostCount() {
+        postCount--;
+    }
+
+    @Override
+    public String toString() {
+        return "\n"
+                + "\n"
+                + "ID: " + id + "\n"
+                + "Handle: " + handle + "\n"
+                + "Description: " + description + "\n"
+                + "Post count: " + postCount + "\n"
+                + "Endorse count: " + endorsementCount + "\n"
+                + "\n";
     }
 }

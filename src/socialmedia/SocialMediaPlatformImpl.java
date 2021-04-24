@@ -1,7 +1,6 @@
 package socialmedia;
 
 import java.io.*;
-import java.nio.Buffer;
 import java.util.ArrayList;
 
 import socialmedia.exceptions.*;
@@ -28,17 +27,17 @@ public class SocialMediaPlatformImpl implements SocialMediaPlatform, Serializabl
     public int createAccount(String handle) throws IllegalHandleException, InvalidHandleException {
         //IllegalHandleException
         for (int j = 0; j < this.accounts.size(); j++) {
-            if (handle.equals(accounts.get(j).getHandle())){
+            if (handle.equals(accounts.get(j).getHandle())) {
                 throw new IllegalHandleException();
             }
         }
 
         //InvalidHandleException
         for (int i = 0; i < this.accounts.size(); i++) {
-            if (handle.contains(" ")){
+            if (handle.contains(" ")) {
                 throw new InvalidHandleException();
             }
-            if (handle != null && !handle.isEmpty()){
+            if (handle != null && !handle.isEmpty()) {
                 throw new InvalidHandleException();
             }
         }
@@ -53,17 +52,17 @@ public class SocialMediaPlatformImpl implements SocialMediaPlatform, Serializabl
     public int createAccount(String handle, String description) throws IllegalHandleException, InvalidHandleException {
         //IllegalHandleException
         for (int j = 0; j < this.accounts.size(); j++) {
-            if (handle.equals(accounts.get(j).getHandle())){
+            if (handle.equals(accounts.get(j).getHandle())) {
                 throw new IllegalHandleException();
             }
         }
 
         //InvalidHandleException
         for (int i = 0; i < this.accounts.size(); i++) {
-            if (handle.contains(" ")){
+            if (handle.contains(" ")) {
                 throw new InvalidHandleException();
             }
-            if (handle != null && !handle.isEmpty()){
+            if (handle != null && !handle.isEmpty()) {
                 throw new InvalidHandleException();
             }
         }
@@ -80,7 +79,7 @@ public class SocialMediaPlatformImpl implements SocialMediaPlatform, Serializabl
     public void removeAccount(int id) throws AccountIDNotRecognisedException {
         //AccountIDNotRecognisedException
         for (int i = 0; i < accounts.size(); i++) {
-            if (!accounts.contains(accounts.get(i).getId())){
+            if (!accounts.contains(accounts.get(i).getId())) {
                 throw new AccountIDNotRecognisedException();
             }
 
@@ -92,14 +91,13 @@ public class SocialMediaPlatformImpl implements SocialMediaPlatform, Serializabl
                 this.accounts.remove(i);
             }
         }
-
     }
 
     @Override
     public void removeAccount(String handle) throws HandleNotRecognisedException {
         //HandleNotRecognisedException
         for (int i = 0; i < accounts.size(); i++) {
-            if (!handle.equals(this.accounts.get(i).getHandle())){
+            if (!handle.equals(this.accounts.get(i).getHandle())) {
                 throw new HandleNotRecognisedException();
             }
 
@@ -110,38 +108,11 @@ public class SocialMediaPlatformImpl implements SocialMediaPlatform, Serializabl
                 accounts.remove(i);
             }
         }
-
-
-
     }
 
     @Override
     public void changeAccountHandle(String oldHandle, String newHandle) throws HandleNotRecognisedException, IllegalHandleException, InvalidHandleException {
-        //HandleNotRecognisedException
-        for (int i = 0; i < accounts.size(); i++) {
-            if (!oldHandle.equals(this.accounts.get(i).getHandle())){
-                throw new HandleNotRecognisedException();
-            }
-        }
-
-        //IllegalHandleException
-        for (int j = 0; j < this.accounts.size(); j++) {
-            if (oldHandle.equals(accounts.get(j).getHandle())){
-                throw new IllegalHandleException();
-            }
-        }
-
-        //InvalidHandleException
-        for (int i = 0; i < this.accounts.size(); i++) {
-            if (oldHandle.contains(" ")){
-                throw new InvalidHandleException();
-            }
-            if (oldHandle != null && !oldHandle.isEmpty()){
-                throw new InvalidHandleException();
-            }
-        }
-
-        //Loops through and checks the handles, if true then set handle with new handle
+        // Loops through and checks the handles, if true then set handle with new handle
         for (int i = 0; i < this.accounts.size(); i++) {
             if (this.accounts.get(i).getHandle().equals(oldHandle)) {
                 this.accounts.get(i).setHandle(newHandle);
@@ -153,53 +124,28 @@ public class SocialMediaPlatformImpl implements SocialMediaPlatform, Serializabl
     public void updateAccountDescription(String handle, String description) throws HandleNotRecognisedException {
         //HandleNotRecognisedException
         for (int i = 0; i < accounts.size(); i++) {
-            if (!handle.equals(this.accounts.get(i).getHandle())){
+            if (!handle.equals(this.accounts.get(i).getHandle())) {
                 throw new HandleNotRecognisedException();
             }
         }
 
-        //Loops through and checks if the handle is the same, if it is update the description.
         for (int i = 0; i < accounts.size(); i++) {
+            //Loops through and checks if the handle is the same, if it is update the description.
             if (accounts.get(i).getHandle().equals(handle)) {
                 accounts.get(i).setDescription(description);
             }
         }
-
     }
 
     @Override
     public String showAccount(String handle) throws HandleNotRecognisedException {
-        String formattedSummary = "default mate";
-//        accounts.get(i).getHandle().equals(handle)
+        final var account = findAccountByHandle(handle);
 
-        for (int i = 0; i < accounts.size(); i++) {
-            String currentAccountsHandle = accounts.get(i).getHandle();
-            if (currentAccountsHandle.equals(handle)) {
+        if (account == null)
+            // no account was found with the given handle
+            throw new HandleNotRecognisedException();
 
-                //Grab all of the account data:
-                int accountID = accounts.get(i).getId();
-                String accountHandle = accounts.get(i).getHandle();
-
-                //Problem Code is this line below:
-                String accountDescription = accounts.get(i).getDescription();
-
-                //Need Kens Code:
-                int accountPostCount = 0;
-                int accountEndorseCount = 0;
-
-                formattedSummary = (
-                        "\n"
-                                + "\n"
-                                + "ID: " + accountID + "\n"
-                                + "Handle: " + accountHandle + "\n"
-                                + "Description: " + accountDescription + "\n"
-                                + "Post count: " + accountPostCount + "\n"
-                                + "Endorse count: " + accountEndorseCount + "\n"
-                                + "\n"
-                );
-            }
-        }
-        return formattedSummary;
+        return account.toString();
     }
 
     @Override
@@ -224,18 +170,22 @@ public class SocialMediaPlatformImpl implements SocialMediaPlatform, Serializabl
 
         //PostIDNotRecognisedException
         if (originalPost == null)
+            // no post was found with the given id
             throw new PostIDNotRecognisedException();
 
         //PostIDNotRecognisedException
         if (endorser == null)
+            // no account was found with the given handle
             throw new HandleNotRecognisedException();
 
         //PostIDNotRecognisedException
         if (originalPost instanceof EndorsementPost)
+            // the post found is an endorsement post
             throw new NotActionablePostException();
 
         //Creates new endorsementPost and appends it
         final var endorsementPost = new EndorsementPost(originalPost, postId++, endorser);
+
         posts.add(endorsementPost);
 
         return endorsementPost.getId();
@@ -249,22 +199,27 @@ public class SocialMediaPlatformImpl implements SocialMediaPlatform, Serializabl
 
         //PostIDNotRecognisedException
         if (parent == null)
+            // no post was found with the given id
             throw new PostIDNotRecognisedException();
 
         //HandleNotRecognisedException
         if (commenter == null)
+            // no account was found with the given handle
             throw new HandleNotRecognisedException();
 
         //NotActionablePostException
         if (parent instanceof EndorsementPost)
+            // the post found is an endorsement post
             throw new NotActionablePostException();
 
         //InvalidPostException
         if (message.isEmpty() || message.length() > MAX_COMMENT_LENGTH)
+            // the given message is empty or the message is too long
             throw new InvalidPostException();
 
         //Creates new comment object and appends the comment
         final var comment = new Comment(parent, postId++, commenter, message);
+
         posts.add(comment);
         parent.addComment(comment);
 
@@ -277,6 +232,7 @@ public class SocialMediaPlatformImpl implements SocialMediaPlatform, Serializabl
 
         //PostIDNotRecognisedException
         if (post == null)
+            // no post was found with the given id
             throw new PostIDNotRecognisedException();
 
         posts.remove(post);
@@ -288,6 +244,7 @@ public class SocialMediaPlatformImpl implements SocialMediaPlatform, Serializabl
 
         //PostIDNotRecognisedException
         if (post == null)
+            // no post was found with the given id
             throw new PostIDNotRecognisedException();
 
         return post.toString();
@@ -299,19 +256,30 @@ public class SocialMediaPlatformImpl implements SocialMediaPlatform, Serializabl
 
         //PostIDNotRecognisedException
         if (post == null)
+            // no post was found with the given id
             throw new PostIDNotRecognisedException();
 
         //NotActionablePostException
         if (post instanceof EndorsementPost)
+            // the post found is an endorsement post
             throw new NotActionablePostException();
 
         //Creates post children details using string builder
         final var stringBuilder = new StringBuilder();
+
         showPostChildrenDetails(post, 0, stringBuilder);
 
         return stringBuilder;
     }
 
+    /**
+     * Recursive entry of showPostChildrenDetails. params are used to track states of recursion.
+     *
+     * @param parent  The current parent {@link Post} of children.
+     * @param level   How deep the recursion is. Used for calculating indentation.
+     * @param builder The instance of {@link StringBuilder} for storing the string representation of post-children details.
+     * @return A {@link StringBuilder} with (partial) post children details.
+     */
     private StringBuilder showPostChildrenDetails(Post parent, int level, StringBuilder builder) {
         final var indentation = " ".repeat(4 * level);
 
@@ -326,10 +294,11 @@ public class SocialMediaPlatformImpl implements SocialMediaPlatform, Serializabl
             }
         }
 
-        //If the parent object has comments then create different string
+        // only do a recursive call if this parent has comments aka children posts.
         if (parent.hasComments()) {
             builder.append(indentation).append("|\n");
             for (final var comment : parent.getComments()) {
+                // for each comment, print out their details (they will be treated as a parent)
                 builder.append(indentation).append("| > ");
                 showPostChildrenDetails(comment, level + 1, builder);
             }
@@ -340,11 +309,13 @@ public class SocialMediaPlatformImpl implements SocialMediaPlatform, Serializabl
 
     @Override
     public int getMostEndorsedPost() {
-
         //Returns the most endorsed post
+        // the last most endorsed post found.
         Post mostEndorsedPost = null;
         for (final var post : posts) {
-            if (mostEndorsedPost.getEndorsements() < post.getEndorsements()) {
+            // if the endorsement count of this post is larger than the one we found previously
+            // replace that with this post for future comparison
+            if (mostEndorsedPost == null || mostEndorsedPost.getEndorsements() < post.getEndorsements()) {
                 mostEndorsedPost = post;
             }
         }
@@ -353,7 +324,16 @@ public class SocialMediaPlatformImpl implements SocialMediaPlatform, Serializabl
 
     @Override
     public int getMostEndorsedAccount() {
-        return 0;
+        // the last most endorsed account found.
+        Account mostEndorsedAccount = null;
+        for (final var account : accounts) {
+            // if the endorsement count of this account is larger than the one we found previously
+            // replace that with this account for future comparison
+            if (mostEndorsedAccount == null || mostEndorsedAccount.getEndorsementCount() < account.getEndorsementCount()) {
+                mostEndorsedAccount = account;
+            }
+        }
+        return mostEndorsedAccount.getId();
     }
 
     @Override
