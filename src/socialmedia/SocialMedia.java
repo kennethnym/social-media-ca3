@@ -11,7 +11,7 @@ import socialmedia.models.Post;
 
 import java.util.stream.Collectors;
 
-public class SocialMediaPlatformImpl implements SocialMediaPlatform, Serializable {
+public class SocialMedia implements SocialMediaPlatform, Serializable {
     private static final int MAX_COMMENT_LENGTH = 100;
 
     private ArrayList<Account> accounts = new ArrayList<>();
@@ -485,9 +485,9 @@ public class SocialMediaPlatformImpl implements SocialMediaPlatform, Serializabl
         final var stream = new ObjectInputStream(new FileInputStream(filename));
         final var obj = stream.readObject();
 
-        if (obj instanceof SocialMediaPlatformImpl) {
-            accounts = ((SocialMediaPlatformImpl) obj).accounts;
-            posts = ((SocialMediaPlatformImpl) obj).posts;
+        if (obj instanceof SocialMedia) {
+            accounts = ((SocialMedia) obj).accounts;
+            posts = ((SocialMedia) obj).posts;
         }
     }
 

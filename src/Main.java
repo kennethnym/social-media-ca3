@@ -1,15 +1,13 @@
-import socialmedia.SocialMediaPlatformImpl;
+import socialmedia.SocialMedia;
 import socialmedia.exceptions.*;
-import socialmedia.models.Account;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
 
         //This is for testing
-        final var socialMediaPlatform = new SocialMediaPlatformImpl();
+        final var socialMediaPlatform = new SocialMedia();
 
         //Create a new account
         try {
