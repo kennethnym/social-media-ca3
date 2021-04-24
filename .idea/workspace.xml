@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="79f1686b-d7b8-4942-9d71-762ea6dc9dc3" name="Default Changelist" comment="Delete Dummy">
+      <change beforePath="$PROJECT_DIR$/src/socialmedia/models/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/socialmedia/models/Account.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/socialmedia/models/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/socialmedia/models/Comment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/socialmedia/models/EndorsementPost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/socialmedia/models/EndorsementPost.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/socialmedia/models/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/socialmedia/models/Post.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="ProjectId" id="1r7NT4GGgsojPwBbuWjIqjcupFf" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\chris\IdeaProjects\social-media-ca3\src\socialmedia\exceptions" />
+      <recent name="C:\Users\chris\IdeaProjects\social-media-ca3\src\socialmedia" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="social-media-ca3" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="79f1686b-d7b8-4942-9d71-762ea6dc9dc3" name="Default Changelist" comment="" />
+      <created>1618323173738</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1618323173738</updated>
+    </task>
+    <task id="LOCAL-00001" summary="accountObject basics">
+      <created>1618329378129</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1618329378129</updated>
+    </task>
+    <task id="LOCAL-00002" summary="accountObject basics">
+      <created>1618502435578</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1618502435578</updated>
+    </task>
+    <task id="LOCAL-00003" summary="accountObject basics">
+      <created>1618502595941</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1618502595941</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Disregard all of the prevrious push's, they will be organised from hereout">
+      <created>1618502658521</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1618502658521</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Create Account, Remove Account fixed">
+      <created>1618506385460</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1618506385460</updated>
+    </task>
+    <task id="LOCAL-00006" summary="update main testing file">
+      <created>1618508229297</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1618508229297</updated>
+    </task>
+    <task id="LOCAL-00007" summary="updateAccountDescription, showAccount finished functions">
+      <created>1618923116830</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1618923116831</updated>
+    </task>
+    <task id="LOCAL-00008" summary="updateAccountDescription, showAccount finished functions">
+      <created>1618927803072</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1618927803072</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Chris Exceptions updated">
+      <created>1619021080727</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1619021080727</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Comments updated">
+      <created>1619273669033</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1619273669033</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Chris's Javadocs">
+      <created>1619278442452</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1619278442452</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Final Update">
+      <created>1619281772471</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1619281772471</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Delete Main">
+      <created>1619281831315</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1619281831315</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Delete Dummy">
+      <created>1619281877763</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1619281877763</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="accountObject basics" />
+    <MESSAGE value="Disregard all of the prevrious push's, they will be organised from hereout" />
+    <MESSAGE value="Create Account, Remove Account fixed" />
+    <MESSAGE value="update main testing file" />
+    <MESSAGE value="updateAccountDescription, showAccount finished functions" />
+    <MESSAGE value="Chris Exceptions updated" />
+    <MESSAGE value="Comments updated" />
+    <MESSAGE value="Chris's Javadocs" />
+    <MESSAGE value="Final Update" />
+    <MESSAGE value="Delete Main" />
+    <MESSAGE value="Delete Dummy" />
+    <option name="LAST_COMMIT_MESSAGE" value="Delete Dummy" />
+  </component>
+</project>
