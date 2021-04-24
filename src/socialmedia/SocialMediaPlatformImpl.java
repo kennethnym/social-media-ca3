@@ -117,7 +117,6 @@ public class SocialMediaPlatformImpl implements SocialMediaPlatform, Serializabl
 
     @Override
     public void changeAccountHandle(String oldHandle, String newHandle) throws HandleNotRecognisedException, IllegalHandleException, InvalidHandleException {
-
         //HandleNotRecognisedException
         for (int i = 0; i < accounts.size(); i++) {
             if (!oldHandle.equals(this.accounts.get(i).getHandle())){
@@ -148,16 +147,10 @@ public class SocialMediaPlatformImpl implements SocialMediaPlatform, Serializabl
                 this.accounts.get(i).setHandle(newHandle);
             }
         }
-
-
-
-
-
     }
 
     @Override
     public void updateAccountDescription(String handle, String description) throws HandleNotRecognisedException {
-
         //HandleNotRecognisedException
         for (int i = 0; i < accounts.size(); i++) {
             if (!handle.equals(this.accounts.get(i).getHandle())){
@@ -165,21 +158,18 @@ public class SocialMediaPlatformImpl implements SocialMediaPlatform, Serializabl
             }
         }
 
+        //Loops through and checks if the handle is the same, if it is update the description.
         for (int i = 0; i < accounts.size(); i++) {
             if (accounts.get(i).getHandle().equals(handle)) {
                 accounts.get(i).setDescription(description);
             }
         }
 
-
-
     }
 
     @Override
     public String showAccount(String handle) throws HandleNotRecognisedException {
-
         String formattedSummary = "default mate";
-
 //        accounts.get(i).getHandle().equals(handle)
 
         for (int i = 0; i < accounts.size(); i++) {
@@ -216,11 +206,12 @@ public class SocialMediaPlatformImpl implements SocialMediaPlatform, Serializabl
     public int createPost(String handle, String message) throws HandleNotRecognisedException, InvalidPostException {
         final var account = findAccountByHandle(handle);
 
+        //HandleNotRecognisedException
         if (account == null)
             throw new HandleNotRecognisedException();
 
+        //Creates new post object and appends it
         final var newPost = new Post(postId++, message, account);
-
         posts.add(newPost);
 
         return newPost.getId();
@@ -231,17 +222,20 @@ public class SocialMediaPlatformImpl implements SocialMediaPlatform, Serializabl
         final var originalPost = findPostById(id);
         final var endorser = findAccountByHandle(handle);
 
+        //PostIDNotRecognisedException
         if (originalPost == null)
             throw new PostIDNotRecognisedException();
 
+        //PostIDNotRecognisedException
         if (endorser == null)
             throw new HandleNotRecognisedException();
 
+        //PostIDNotRecognisedException
         if (originalPost instanceof EndorsementPost)
             throw new NotActionablePostException();
 
+        //Creates new endorsementPost and appends it
         final var endorsementPost = new EndorsementPost(originalPost, postId++, endorser);
-
         posts.add(endorsementPost);
 
         return endorsementPost.getId();
@@ -252,20 +246,25 @@ public class SocialMediaPlatformImpl implements SocialMediaPlatform, Serializabl
         final var parent = findPostById(id);
         final var commenter = findAccountByHandle(handle);
 
+
+        //PostIDNotRecognisedException
         if (parent == null)
             throw new PostIDNotRecognisedException();
 
+        //HandleNotRecognisedException
         if (commenter == null)
             throw new HandleNotRecognisedException();
 
+        //NotActionablePostException
         if (parent instanceof EndorsementPost)
             throw new NotActionablePostException();
 
+        //InvalidPostException
         if (message.isEmpty() || message.length() > MAX_COMMENT_LENGTH)
             throw new InvalidPostException();
 
+        //Creates new comment object and appends the comment
         final var comment = new Comment(parent, postId++, commenter, message);
-
         posts.add(comment);
         parent.addComment(comment);
 
@@ -276,6 +275,7 @@ public class SocialMediaPlatformImpl implements SocialMediaPlatform, Serializabl
     public void deletePost(int id) throws PostIDNotRecognisedException {
         final var post = findPostById(id);
 
+        //PostIDNotRecognisedException
         if (post == null)
             throw new PostIDNotRecognisedException();
 
@@ -286,6 +286,7 @@ public class SocialMediaPlatformImpl implements SocialMediaPlatform, Serializabl
     public String showIndividualPost(int id) throws PostIDNotRecognisedException {
         final var post = findPostById(id);
 
+        //PostIDNotRecognisedException
         if (post == null)
             throw new PostIDNotRecognisedException();
 
@@ -296,14 +297,16 @@ public class SocialMediaPlatformImpl implements SocialMediaPlatform, Serializabl
     public StringBuilder showPostChildrenDetails(int id) throws PostIDNotRecognisedException, NotActionablePostException {
         final var post = findPostById(id);
 
+        //PostIDNotRecognisedException
         if (post == null)
             throw new PostIDNotRecognisedException();
 
+        //NotActionablePostException
         if (post instanceof EndorsementPost)
             throw new NotActionablePostException();
 
+        //Creates post children details using string builder
         final var stringBuilder = new StringBuilder();
-
         showPostChildrenDetails(post, 0, stringBuilder);
 
         return stringBuilder;
@@ -312,6 +315,7 @@ public class SocialMediaPlatformImpl implements SocialMediaPlatform, Serializabl
     private StringBuilder showPostChildrenDetails(Post parent, int level, StringBuilder builder) {
         final var indentation = " ".repeat(4 * level);
 
+        //Checks the level of the object and creates a string
         if (level == 0) {
             builder.append(parent.toString()).append("\n");
         } else {
@@ -322,6 +326,7 @@ public class SocialMediaPlatformImpl implements SocialMediaPlatform, Serializabl
             }
         }
 
+        //If the parent object has comments then create different string
         if (parent.hasComments()) {
             builder.append(indentation).append("|\n");
             for (final var comment : parent.getComments()) {
@@ -335,6 +340,8 @@ public class SocialMediaPlatformImpl implements SocialMediaPlatform, Serializabl
 
     @Override
     public int getMostEndorsedPost() {
+
+        //Returns the most endorsed post
         Post mostEndorsedPost = null;
         for (final var post : posts) {
             if (mostEndorsedPost.getEndorsements() < post.getEndorsements()) {
@@ -351,6 +358,7 @@ public class SocialMediaPlatformImpl implements SocialMediaPlatform, Serializabl
 
     @Override
     public void erasePlatform() {
+        //Clears the arrays
         accounts.clear();
         posts.clear();
         postId = 0;
@@ -358,12 +366,14 @@ public class SocialMediaPlatformImpl implements SocialMediaPlatform, Serializabl
 
     @Override
     public void savePlatform(String filename) throws IOException {
+        //Saves the platform to the specified name
         final var stream = new ObjectOutputStream(new FileOutputStream(filename));
         stream.writeObject(this);
     }
 
     @Override
     public void loadPlatform(String filename) throws IOException, ClassNotFoundException {
+        //Loads the specified file name that has been serialized
         final var stream = new ObjectInputStream(new FileInputStream(filename));
         final var obj = stream.readObject();
 
@@ -381,6 +391,7 @@ public class SocialMediaPlatformImpl implements SocialMediaPlatform, Serializabl
 
     @Override
     public int getTotalOriginalPosts() {
+        //Filters through and sorts all of the original posts
         return posts.stream()
                 .filter(post -> !(post instanceof EndorsementPost || post instanceof Comment))
                 .collect(Collectors.toCollection(ArrayList::new))
