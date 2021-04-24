@@ -23,8 +23,15 @@ public class SocialMediaPlatformImpl implements SocialMediaPlatform, Serializabl
      */
     private int postId = 0;
 
+    /**
+     * @param handle the accounts handle as input
+     * @return it returns the accountID
+     * @throws IllegalHandleException if the handle has a space
+     * @throws InvalidHandleException if the handle exists already
+     */
     @Override
     public int createAccount(String handle) throws IllegalHandleException, InvalidHandleException {
+
         //IllegalHandleException
         for (int j = 0; j < this.accounts.size(); j++) {
             if (handle.equals(accounts.get(j).getHandle())) {
@@ -41,6 +48,7 @@ public class SocialMediaPlatformImpl implements SocialMediaPlatform, Serializabl
                 throw new InvalidHandleException();
             }
         }
+
         //Create account code:
         int arrayLength = this.accounts.size();
         int accountID = arrayLength + 1;
@@ -48,6 +56,13 @@ public class SocialMediaPlatformImpl implements SocialMediaPlatform, Serializabl
         return accountID;
     }
 
+    /**
+     * @param handle      account's handle.
+     * @param description account's description.
+     * @return returns the accountID
+     * @throws IllegalHandleException if the handle is illegal
+     * @throws InvalidHandleException If the handle is inavlid handle
+     */
     @Override
     public int createAccount(String handle, String description) throws IllegalHandleException, InvalidHandleException {
         //IllegalHandleException
@@ -75,6 +90,10 @@ public class SocialMediaPlatformImpl implements SocialMediaPlatform, Serializabl
         return accountID;
     }
 
+    /**
+     * @param id ID of the account.
+     * @throws AccountIDNotRecognisedException account id not recognized excpetion
+     */
     @Override
     public void removeAccount(int id) throws AccountIDNotRecognisedException {
         //AccountIDNotRecognisedException
@@ -93,6 +112,10 @@ public class SocialMediaPlatformImpl implements SocialMediaPlatform, Serializabl
         }
     }
 
+    /**
+     * @param handle account's handle.
+     * @throws HandleNotRecognisedException handle not recongized excpetion thrown
+     */
     @Override
     public void removeAccount(String handle) throws HandleNotRecognisedException {
         //HandleNotRecognisedException
@@ -110,6 +133,13 @@ public class SocialMediaPlatformImpl implements SocialMediaPlatform, Serializabl
         }
     }
 
+    /**
+     * @param oldHandle account's old handle.
+     * @param newHandle account's new handle.
+     * @throws HandleNotRecognisedException handle not recongized excpetion
+     * @throws IllegalHandleException illegal handle expection thrown
+     * @throws InvalidHandleException illegal handle exception
+     */
     @Override
     public void changeAccountHandle(String oldHandle, String newHandle) throws HandleNotRecognisedException, IllegalHandleException, InvalidHandleException {
         // Loops through and checks the handles, if true then set handle with new handle
@@ -120,6 +150,11 @@ public class SocialMediaPlatformImpl implements SocialMediaPlatform, Serializabl
         }
     }
 
+    /**
+     * @param handle      handle to identify the account.
+     * @param description new text for description.
+     * @throws HandleNotRecognisedException handle not recognised expection
+     */
     @Override
     public void updateAccountDescription(String handle, String description) throws HandleNotRecognisedException {
         //HandleNotRecognisedException
@@ -137,6 +172,11 @@ public class SocialMediaPlatformImpl implements SocialMediaPlatform, Serializabl
         }
     }
 
+    /**
+     * @param handle handle to identify the account.
+     * @return returns a string
+     * @throws HandleNotRecognisedException Handle Not Recognised Exception
+     */
     @Override
     public String showAccount(String handle) throws HandleNotRecognisedException {
         final var account = findAccountByHandle(handle);
