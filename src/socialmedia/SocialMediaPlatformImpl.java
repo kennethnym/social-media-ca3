@@ -24,6 +24,8 @@ public class SocialMediaPlatformImpl implements SocialMediaPlatform, Serializabl
     private int postId = 0;
 
     /**
+     * Create an account.
+     *
      * @param handle the accounts handle as input
      * @return it returns the accountID
      * @throws IllegalHandleException if the handle has a space
@@ -57,6 +59,8 @@ public class SocialMediaPlatformImpl implements SocialMediaPlatform, Serializabl
     }
 
     /**
+     * Create an account with the given handle
+     *
      * @param handle      account's handle.
      * @param description account's description.
      * @return returns the accountID
@@ -91,6 +95,8 @@ public class SocialMediaPlatformImpl implements SocialMediaPlatform, Serializabl
     }
 
     /**
+     * Remove the account
+     *
      * @param id ID of the account.
      * @throws AccountIDNotRecognisedException account id not recognized excpetion
      */
@@ -113,6 +119,8 @@ public class SocialMediaPlatformImpl implements SocialMediaPlatform, Serializabl
     }
 
     /**
+     * Remove the account
+     *
      * @param handle account's handle.
      * @throws HandleNotRecognisedException handle not recongized excpetion thrown
      */
@@ -134,11 +142,13 @@ public class SocialMediaPlatformImpl implements SocialMediaPlatform, Serializabl
     }
 
     /**
+     * Change the handle of the account.
+     *
      * @param oldHandle account's old handle.
      * @param newHandle account's new handle.
      * @throws HandleNotRecognisedException handle not recongized excpetion
-     * @throws IllegalHandleException illegal handle expection thrown
-     * @throws InvalidHandleException illegal handle exception
+     * @throws IllegalHandleException       illegal handle expection thrown
+     * @throws InvalidHandleException       illegal handle exception
      */
     @Override
     public void changeAccountHandle(String oldHandle, String newHandle) throws HandleNotRecognisedException, IllegalHandleException, InvalidHandleException {
@@ -151,6 +161,8 @@ public class SocialMediaPlatformImpl implements SocialMediaPlatform, Serializabl
     }
 
     /**
+     * Update the description of the given account
+     *
      * @param handle      handle to identify the account.
      * @param description new text for description.
      * @throws HandleNotRecognisedException handle not recognised expection
@@ -173,6 +185,8 @@ public class SocialMediaPlatformImpl implements SocialMediaPlatform, Serializabl
     }
 
     /**
+     * Show an account
+     *
      * @param handle handle to identify the account.
      * @return returns a string
      * @throws HandleNotRecognisedException Handle Not Recognised Exception
@@ -188,6 +202,15 @@ public class SocialMediaPlatformImpl implements SocialMediaPlatform, Serializabl
         return account.toString();
     }
 
+    /**
+     * Create a new post
+     *
+     * @param handle  handle to identify the account.
+     * @param message post message.
+     * @return The ID of the created post.
+     * @throws HandleNotRecognisedException Handle Not Recognised Exception
+     * @throws InvalidPostException         Thrown when the post is invalid
+     */
     @Override
     public int createPost(String handle, String message) throws HandleNotRecognisedException, InvalidPostException {
         final var account = findAccountByHandle(handle);
@@ -203,6 +226,16 @@ public class SocialMediaPlatformImpl implements SocialMediaPlatform, Serializabl
         return newPost.getId();
     }
 
+    /**
+     * Endorse a post
+     *
+     * @param handle of the account endorsing a post.
+     * @param id     of the post being endorsed.
+     * @return The ID of the created endorsement post.
+     * @throws HandleNotRecognisedException Handle Not Recognized
+     * @throws PostIDNotRecognisedException Post ID Not Recognized
+     * @throws NotActionablePostException   The post is not actionable.
+     */
     @Override
     public int endorsePost(String handle, int id) throws HandleNotRecognisedException, PostIDNotRecognisedException, NotActionablePostException {
         final var originalPost = findPostById(id);
@@ -231,6 +264,18 @@ public class SocialMediaPlatformImpl implements SocialMediaPlatform, Serializabl
         return endorsementPost.getId();
     }
 
+    /**
+     * Comment on the given post.
+     *
+     * @param handle  of the account commenting a post.
+     * @param id      of the post being commented.
+     * @param message the comment post message.
+     * @return The ID of the created comment.
+     * @throws HandleNotRecognisedException Handle is not recognized
+     * @throws PostIDNotRecognisedException Post id is not recognized
+     * @throws NotActionablePostException   The post is not actionable
+     * @throws InvalidPostException         The post is invalid
+     */
     @Override
     public int commentPost(String handle, int id, String message) throws HandleNotRecognisedException, PostIDNotRecognisedException, NotActionablePostException, InvalidPostException {
         final var parent = findPostById(id);
@@ -266,6 +311,12 @@ public class SocialMediaPlatformImpl implements SocialMediaPlatform, Serializabl
         return comment.getId();
     }
 
+    /**
+     * Delete the post with the given ID
+     *
+     * @param id ID of post to be removed.
+     * @throws PostIDNotRecognisedException The given ID is not recognized.
+     */
     @Override
     public void deletePost(int id) throws PostIDNotRecognisedException {
         final var post = findPostById(id);
@@ -278,6 +329,13 @@ public class SocialMediaPlatformImpl implements SocialMediaPlatform, Serializabl
         posts.remove(post);
     }
 
+    /**
+     * Show details of a post with the given ID.
+     *
+     * @param id of the post to be shown.
+     * @return The details of the post in string.
+     * @throws PostIDNotRecognisedException
+     */
     @Override
     public String showIndividualPost(int id) throws PostIDNotRecognisedException {
         final var post = findPostById(id);
@@ -290,6 +348,14 @@ public class SocialMediaPlatformImpl implements SocialMediaPlatform, Serializabl
         return post.toString();
     }
 
+    /**
+     * Show details of a post and its childre nposts.
+     *
+     * @param id of the post to be shown.
+     * @return The details in string.
+     * @throws PostIDNotRecognisedException
+     * @throws NotActionablePostException
+     */
     @Override
     public StringBuilder showPostChildrenDetails(int id) throws PostIDNotRecognisedException, NotActionablePostException {
         final var post = findPostById(id);
@@ -347,6 +413,9 @@ public class SocialMediaPlatformImpl implements SocialMediaPlatform, Serializabl
         return builder;
     }
 
+    /**
+     * @return the most endorsed post in social media.
+     */
     @Override
     public int getMostEndorsedPost() {
         //Returns the most endorsed post
@@ -362,6 +431,9 @@ public class SocialMediaPlatformImpl implements SocialMediaPlatform, Serializabl
         return mostEndorsedPost.getId();
     }
 
+    /**
+     * @return the most endorsed account in social media.
+     */
     @Override
     public int getMostEndorsedAccount() {
         // the last most endorsed account found.
@@ -376,6 +448,9 @@ public class SocialMediaPlatformImpl implements SocialMediaPlatform, Serializabl
         return mostEndorsedAccount.getId();
     }
 
+    /**
+     * Clears all data in social media.
+     */
     @Override
     public void erasePlatform() {
         //Clears the arrays
@@ -384,6 +459,12 @@ public class SocialMediaPlatformImpl implements SocialMediaPlatform, Serializabl
         postId = 0;
     }
 
+    /**
+     * Save the data of social media.
+     *
+     * @param filename location of the file to be saved
+     * @throws IOException An error occurred when saving data.
+     */
     @Override
     public void savePlatform(String filename) throws IOException {
         //Saves the platform to the specified name
@@ -391,6 +472,13 @@ public class SocialMediaPlatformImpl implements SocialMediaPlatform, Serializabl
         stream.writeObject(this);
     }
 
+    /**
+     * Loads a platform from a file.
+     *
+     * @param filename location of the file to be loaded
+     * @throws IOException            An error occurred when reading the file.
+     * @throws ClassNotFoundException
+     */
     @Override
     public void loadPlatform(String filename) throws IOException, ClassNotFoundException {
         //Loads the specified file name that has been serialized
@@ -403,12 +491,18 @@ public class SocialMediaPlatformImpl implements SocialMediaPlatform, Serializabl
         }
     }
 
+    /**
+     * @return The number of account registered on the social media.
+     */
     @Override
     public int getNumberOfAccounts() {
         int totalAccounts = this.accounts.size();
         return totalAccounts;
     }
 
+    /**
+     * @return The number of posts made on the social media.
+     */
     @Override
     public int getTotalOriginalPosts() {
         //Filters through and sorts all of the original posts
@@ -418,6 +512,9 @@ public class SocialMediaPlatformImpl implements SocialMediaPlatform, Serializabl
                 .size();
     }
 
+    /**
+     * @return number of endorsement posts on social media.
+     */
     @Override
     public int getTotalEndorsmentPosts() {
         return posts.stream()
@@ -426,6 +523,9 @@ public class SocialMediaPlatformImpl implements SocialMediaPlatform, Serializabl
                 .size();
     }
 
+    /**
+     * @return number of comments on social media.
+     */
     @Override
     public int getTotalCommentPosts() {
         return posts.stream()
@@ -439,7 +539,7 @@ public class SocialMediaPlatformImpl implements SocialMediaPlatform, Serializabl
      * Finds the account with the given handle.
      *
      * @param handle The handle of the account
-     * @return the account with the given handle.
+     * @return the account with the given handle, or null if none is found.
      */
     private Account findAccountByHandle(String handle) {
         return accounts.stream()
@@ -448,6 +548,12 @@ public class SocialMediaPlatformImpl implements SocialMediaPlatform, Serializabl
                 .orElse(null);
     }
 
+    /**
+     * Finds a post on social media with the given id.
+     *
+     * @param postId The ID of the post
+     * @return The post found, or null if none is found.
+     */
     private Post findPostById(int postId) {
         return posts.stream()
                 .filter(post -> post.getId() == postId)
