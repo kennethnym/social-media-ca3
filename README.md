@@ -28,7 +28,7 @@ Christopher Man:
 
 Kenneth NYM:
 
-## Project Link
+### Project Link
 Project Link: [https://github.com/kennethym/social-media-ca3](https://github.com/kennethym/social-media-ca3)
 
 ## Acknowledgements
