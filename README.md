@@ -29,7 +29,7 @@ Christopher Man:
 Kenneth NYM:
 
 ### Project Link
-Project Link: [https://github.com/kennethym/social-media-ca3](https://github.com/kennethym/social-media-ca3)
+Project Link: [https://github.com/kennethnym/social-media-ca3](https://github.com/kennethnym/social-media-ca3)
 
 ## Acknowledgements
 * [Github Template Guide](https://github.com/othneildrew/Best-README-Template)
