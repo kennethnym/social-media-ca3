@@ -27,9 +27,8 @@ Christopher Man:
 - [cgym201@exeter.ac.uk](cgym201@exeter.ac.uk)
 
 Kenneth NYM:
--
--
 
+## Project Link
 Project Link: [https://github.com/kennethym/social-media-ca3](https://github.com/kennethym/social-media-ca3)
 
 ## Acknowledgements
